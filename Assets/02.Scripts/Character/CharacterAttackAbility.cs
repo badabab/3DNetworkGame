@@ -20,6 +20,10 @@ public class CharacterAttackAbility : CharacterAbility
     }
     private void Update()
     {
+        if (!_owner.PhotonView.IsMine)
+        {
+            return;
+        }
         _attackTimer += Time.deltaTime;
         bool haveStamina = _owner.Stat.Stamina >= _owner.Stat.AttackConsumeStamina;
         if (Input.GetMouseButtonDown(0) && _attackTimer >= _owner.Stat.AttackCoolTime && haveStamina)

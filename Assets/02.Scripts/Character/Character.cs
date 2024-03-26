@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterMoveAbility))]
@@ -6,9 +7,15 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public Stat Stat;
-    private void Start()
+    public PhotonView PhotonView { get; private set; }
+
+    private void Awake()
     {
         Stat.Init();
-        UI_CharacterStat.Instance.MyCharacter = this;
+        PhotonView = GetComponent<PhotonView>();
+        if (PhotonView.IsMine)
+        {
+            UI_CharacterStat.Instance.MyCharacter = this;
+        }
     }
 }
