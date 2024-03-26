@@ -11,6 +11,9 @@ public class CharacterMoveAbility : CharacterAbility
     private CharacterController _characterController;
     private Animator _animator;
 
+    private float staminaConsume = 10;  // 뛰기 스태미너 소모 10
+    private float staminaCharge = 5;
+
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
@@ -34,13 +37,26 @@ public class CharacterMoveAbility : CharacterAbility
         dir.y = _yVelocity;
         // dir.y = -1f;
 
-        /*float speed = MoveSpeed;
+        float speed = Owner.Stat.MoveSpeed;
         if (Input.GetKey(KeyCode.LeftShift) && (h != 0 || v != 0))
         {
-            speed = RunSpeed;
-        }*/
+            if (Owner.Stat.Stamina > 0)
+            {
+                Owner.Stat.Stamina -= staminaConsume * Time.deltaTime;
+                speed = Owner.Stat.RunSpeed;
+            }
+            else
+            {
+                speed = Owner.Stat.MoveSpeed;
+            }
+        }
+        else
+        {
+            //if (_characterController.isGrounded)
+            Owner.Stat.Stamina += staminaCharge * Time.deltaTime;
+        }
 
         // 4. 이동속도에 따라 그 방향으로 이동한다.
-        _characterController.Move(dir * Owner.Stat.MoveSpeed * Time.deltaTime);
+        _characterController.Move(dir * speed * Time.deltaTime);
     }
 }
