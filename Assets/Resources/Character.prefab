@@ -2380,7 +2380,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 20
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 50
@@ -2971,9 +2971,9 @@ GameObject:
   - component: {fileID: 4704716771993971880}
   - component: {fileID: 379677128169782582}
   - component: {fileID: 3796101974619470899}
-  - component: {fileID: 193158064846925458}
   - component: {fileID: 6131953390882762833}
   - component: {fileID: -8086626473004079332}
+  - component: {fileID: 7845372241274974235}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -3111,31 +3111,6 @@ MonoBehaviour:
     RotationSpeed: 200
     AttackCoolTime: 1
     AttackConsumeStamina: 20
---- !u!114 &193158064846925458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7714694350099525208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents:
-  - {fileID: 3796101974619470899}
-  - {fileID: 6131953390882762833}
-  - {fileID: -8086626473004079332}
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &6131953390882762833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3182,6 +3157,31 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &7845372241274974235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7714694350099525208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 3796101974619470899}
+  - {fileID: 6131953390882762833}
+  - {fileID: -8086626473004079332}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7864870648334480172
 GameObject:
   m_ObjectHideFlags: 0

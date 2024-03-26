@@ -15,6 +15,9 @@ public class CharacterCanvasAbility : CharacterAbility
     }
     private void Update()
     {
-        transform.forward = Camera.main.transform.forward;       
+        transform.forward = Camera.main.transform.forward;
+
+        HealthSliderUI.value = _owner.Stat.Health / (float)_owner.Stat.MaxHealth;
+        StaminaSliderUI.value = _owner.Stat.Stamina / _owner.Stat.MaxStamina;
     }
 }

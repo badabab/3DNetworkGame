@@ -35,8 +35,11 @@ public class Character : MonoBehaviour, IPunObservable
         // stream(통로)은 서버에서 주고받을 데이터가 담겨있는 변수
         if (stream.IsWriting)   // 데이터를 전송하는 상황
         {
-            stream.SendNext(transform.position);
-            stream.SendNext(transform.rotation);
+            /*stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);*/
+
+            stream.SendNext(Stat.Health);
+            stream.SendNext(Stat.Stamina);
         }
         else if (stream.IsReading)  // 데이터를 수신하는 상황
         {
@@ -44,6 +47,11 @@ public class Character : MonoBehaviour, IPunObservable
             /* // Photon Transform View
             _receivedPosition = (Vector3)stream.ReceiveNext();
             _receivedRotation = (Quaternion)stream.ReceiveNext();*/
+            if (!PhotonView.IsMine)
+            {
+                Stat.Health = (int)stream.ReceiveNext();
+                Stat.Stamina = (float)stream.ReceiveNext();
+            }              
         }
         // info는 송수신 성공/실패 여부에 대한 메시지 담겨있다.
     }
