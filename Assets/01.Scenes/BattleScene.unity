@@ -6782,6 +6782,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1486726653596525026, guid: daf661d478fbcbf4791f00721500cb43, type: 3}
   m_PrefabInstance: {fileID: 942666448}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &949323369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 949323370}
+  - component: {fileID: 949323371}
+  m_Layer: 5
+  m_Name: UI_CharacterStat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &949323370
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949323369}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1772973359}
+  - {fileID: 1922572385}
+  m_Father: {fileID: 1950869603}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 150}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &949323371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949323369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fba1a64a7442e1d41868687da893435c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyCharacter: {fileID: 2075774615249537321}
+  HealthSliderUI: {fileID: 1772973360}
+  StaminaSliderUI: {fileID: 1922572386}
 --- !u!1001 &955125123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13843,20 +13896,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772973358}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1510329647}
   - {fileID: 1389075433}
-  m_Father: {fileID: 1950869603}
+  m_Father: {fileID: 949323370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 20, y: 0}
-  m_SizeDelta: {x: 500, y: 70}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 400, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1772973360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14920,20 +14973,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922572384}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 970334742}
   - {fileID: 1036519213}
-  m_Father: {fileID: 1950869603}
+  m_Father: {fileID: 949323370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 20, y: 50}
-  m_SizeDelta: {x: 500, y: 50}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -40}
+  m_SizeDelta: {x: 400, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1922572386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15157,8 +15210,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1772973359}
-  - {fileID: 1922572385}
+  - {fileID: 949323370}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -17136,7 +17188,6 @@ GameObject:
   - component: {fileID: 2075774615249537318}
   - component: {fileID: 2075774615249537320}
   - component: {fileID: 2075774615249537321}
-  - component: {fileID: 2075774615249537322}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -17536,28 +17587,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stat:
-    MaxHealth: 100
     Health: 0
-    MaxStamina: 100
+    MaxHealth: 100
     Stamina: 0
-    MoveSpeed: 5
-    RunSpeed: 7
+    MaxStamina: 100
+    RecoveryStamina: 5
+    RunConsumeStamina: 10
+    MoveSpeed: 7
+    RunSpeed: 10
     RotationSpeed: 200
     AttackCoolTime: 1
---- !u!114 &2075774615249537322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1157367733856047269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba1a64a7442e1d41868687da893435c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HealthSliderUI: {fileID: 1772973360}
-  StaminaSliderUI: {fileID: 1922572386}
+    AttackConsumeStamina: 20
 --- !u!1001 &2075774615980251283
 PrefabInstance:
   m_ObjectHideFlags: 0

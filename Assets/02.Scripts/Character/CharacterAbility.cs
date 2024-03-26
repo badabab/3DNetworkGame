@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CharacterAbility : MonoBehaviour
 {
-    protected Character Owner {  get; private set; }
+    protected Character _owner {  get; private set; }
 
     protected void Awake()
     {
-        Owner = GetComponent<Character>();
+        _owner = GetComponent<Character>();
     }
 }

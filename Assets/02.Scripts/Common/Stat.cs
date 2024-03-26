@@ -3,12 +3,24 @@ using System;
 [Serializable] // 직렬화 가능한
 public class Stat
 {
-    public int MaxHealth;
     public int Health;
-    public float MaxStamina;
+    public int MaxHealth;
+
     public float Stamina;
+    public float MaxStamina;
+    public float RecoveryStamina;
+    public float RunConsumeStamina;
+
     public float MoveSpeed;
     public float RunSpeed;
+
     public float RotationSpeed;
+
     public float AttackCoolTime;
+    public float AttackConsumeStamina;
+    public void Init()
+    {
+        Health = MaxHealth;
+        Stamina = MaxStamina;
+    }
 }

@@ -13,7 +13,6 @@ public class CharacterAttackAbility : CharacterAbility
 
     private Animator _animator;
     private float _attackTimer = 0f;
-    private float staminaConsume = 20; // 공격 스태미너 소모 20
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -22,14 +21,12 @@ public class CharacterAttackAbility : CharacterAbility
     private void Update()
     {
         _attackTimer += Time.deltaTime;
-        if (Owner.Stat.Stamina >= staminaConsume)
+        bool haveStamina = _owner.Stat.Stamina >= _owner.Stat.AttackConsumeStamina;
+        if (Input.GetMouseButtonDown(0) && _attackTimer >= _owner.Stat.AttackCoolTime && haveStamina)
         {
-            if (Input.GetMouseButtonDown(0) && _attackTimer >= Owner.Stat.AttackCoolTime)
-            {
-                Owner.Stat.Stamina -= staminaConsume;
-                _animator.SetTrigger($"Attack{UnityEngine.Random.Range(1, 4)}");
-                _attackTimer = 0f;
-            }
-        }       
+            _owner.Stat.Stamina -= _owner.Stat.AttackConsumeStamina;
+            _animator.SetTrigger($"Attack{UnityEngine.Random.Range(1, 4)}");
+            _attackTimer = 0f;
+        }
     }
 }
