@@ -18,6 +18,7 @@ public class Stat
 
     public float AttackCoolTime;
     public float AttackConsumeStamina;
+    public int Damage;
     public void Init()
     {
         Health = MaxHealth;

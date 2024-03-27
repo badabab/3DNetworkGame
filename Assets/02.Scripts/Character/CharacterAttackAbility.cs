@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class CharacterAttackAbility : CharacterAbility
@@ -29,8 +30,39 @@ public class CharacterAttackAbility : CharacterAbility
         if (Input.GetMouseButtonDown(0) && _attackTimer >= _owner.Stat.AttackCoolTime && haveStamina)
         {
             _owner.Stat.Stamina -= _owner.Stat.AttackConsumeStamina;
-            _animator.SetTrigger($"Attack{UnityEngine.Random.Range(1, 4)}");
             _attackTimer = 0f;
+            // PlayAttackAnimation(Random.Range(1, 4)); // RPCTarget.All을 사용하기 때문에 직접 실행하는 코드는 제거
+            _owner.PhotonView.RPC(nameof(PlayAttackAnimation), RpcTarget.All, Random.Range(1,4));
+            // RPCTarget.All : 모두에게
+            // RPCTarget.Others : 나 자신을 제외하고 모두에게
+            // RPCTarget.Master : 방장에게만
+        }
+    }
+
+    // 자주 상태를 공유할 필요가 없는 함수는 따로 빼주는 것이 좋음
+    [PunRPC]
+    public void PlayAttackAnimation(int index)
+    {
+        _animator.SetTrigger($"Attack{index}");
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (_owner.PhotonView.IsMine == false || other.transform == transform)
+        {
+            return;
+        }
+        // O : 개방 폐쇄 원칙 + 인터페이스
+        // 수정에는 닫혀있고, 확장에는 열려있다.
+        IDamaged damagedAbleObject = other.GetComponent<IDamaged>();
+        if (damagedAbleObject != null)
+        {
+            PhotonView photonView = other.GetComponent<PhotonView>();
+            if (photonView != null)
+            {
+                photonView.RPC("Damaged", RpcTarget.All, _owner.Stat.Damage);
+            }
+            //damagedAbleObject.Damaged(_owner.Stat.Damage);
         }
     }
 }
