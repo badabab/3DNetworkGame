@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterAttackAbility : CharacterAbility
@@ -16,11 +17,16 @@ public class CharacterAttackAbility : CharacterAbility
     private float _attackTimer = 0f;
 
     public Collider WeaponCollider;
+    public GameObject HitEffectPrefab;
+
+    // 때린 애들을 기억해 놓는 리스트
+    private List<IDamaged> _damagedList = new List<IDamaged>();
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _attackTimer = 0f;
+        WeaponCollider.enabled = false;
     }
     private void Update()
     {
@@ -60,13 +66,25 @@ public class CharacterAttackAbility : CharacterAbility
         IDamaged damagedAbleObject = other.GetComponent<IDamaged>();
         if (damagedAbleObject != null)
         {
+            // 내가 이미 때렸던 애라면 안때리겠다
+            if (_damagedList.Contains(damagedAbleObject)) { return; }
+            // 안 맞은 애면 때린 리스트에 추가
+            _damagedList.Add(damagedAbleObject);
+
             PhotonView photonView = other.GetComponent<PhotonView>();
             if (photonView != null)
             {
                 photonView.RPC("Damaged", RpcTarget.All, _owner.Stat.Damage);
+                photonView.RPC("CreateHitEffect", RpcTarget.All, (other.transform.position + transform.position) / 2f);
             }
             //damagedAbleObject.Damaged(_owner.Stat.Damage);
         }
+    }
+
+    [PunRPC]
+    public void CreateHitEffect(Vector3 position)
+    {
+        Instantiate(HitEffectPrefab, position, Quaternion.identity);
     }
 
     public void ActiveCollider()
@@ -76,5 +94,6 @@ public class CharacterAttackAbility : CharacterAbility
     public void InactiveCollider()
     {
         WeaponCollider.enabled = false;
+        _damagedList.Clear();
     }
 }

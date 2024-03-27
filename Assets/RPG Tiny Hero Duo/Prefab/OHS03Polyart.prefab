@@ -102,7 +102,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.39174208, y: 1.4156286, z: 0.08912745}
   m_Center: {x: 0.0000000449876, y: 0.5035896, z: -0.000000042633083}
@@ -118,3 +118,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea4b28aa118d814e88d18623b73388c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyCharacterAttackAbility: {fileID: 0}
