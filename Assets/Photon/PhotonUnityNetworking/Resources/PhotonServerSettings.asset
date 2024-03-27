@@ -43,6 +43,7 @@ MonoBehaviour:
   - Damaged
   - SpawnHitEffect
   - CreateHitEffect
+  - DieAnimation
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -3237,14 +3237,14 @@ MonoBehaviour:
     MaxHealth: 100
     Stamina: 0
     MaxStamina: 100
-    RecoveryStamina: 5
+    RecoveryStamina: 10
     RunConsumeStamina: 10
     MoveSpeed: 7
     RunSpeed: 10
     RotationSpeed: 200
     AttackCoolTime: 1
     AttackConsumeStamina: 20
-    Damage: 10
+    Damage: 30
 --- !u!114 &7845372241274974235
 MonoBehaviour:
   m_ObjectHideFlags: 0

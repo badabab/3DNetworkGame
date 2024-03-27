@@ -1,5 +1,7 @@
 using Photon.Pun;
+using System.Collections;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 [RequireComponent(typeof(CharacterMoveAbility))]
 [RequireComponent(typeof(CharacterRotateAbility))]
@@ -8,10 +10,13 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
 {
     public Stat Stat;
     public PhotonView PhotonView { get; private set; }
+    private Animator _animator;
+
 
     private void Awake()
     {
         Stat.Init();
+        _animator = GetComponent<Animator>();
         PhotonView = GetComponent<PhotonView>();
         if (PhotonView.IsMine)
         {
@@ -44,5 +49,29 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     public void Damaged(int damage)
     {
         Stat.Health -= damage;
+        if (Stat.Health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        PhotonView.RPC(nameof(DieAnimation), RpcTarget.All);
+    }
+    [PunRPC]
+    public void DieAnimation()
+    {
+        _animator.SetTrigger("Die");
+        StartCoroutine(Respawn());
+    }
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(3f);
+        gameObject.SetActive(false);
+        Stat.Init();
+        yield return new WaitForSeconds(3f);
+        gameObject.SetActive(true);
     }
 }
