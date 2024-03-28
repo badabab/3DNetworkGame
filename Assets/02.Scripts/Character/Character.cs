@@ -7,6 +7,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CharacterMoveAbility))]
 [RequireComponent(typeof(CharacterRotateAbility))]
 [RequireComponent(typeof(CharacterAttackAbility))]
+[RequireComponent(typeof(CharacterShakeAbility))]
 public class Character : MonoBehaviour, IPunObservable, IDamaged
 {
     public Stat Stat;
@@ -49,7 +50,7 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     public void Damaged(int damage)
     {
         Stat.Health -= damage;
-
+        GetComponent<CharacterShakeAbility>().Shake();
         if (PhotonView.IsMine)
         {
             CinemachineImpulseSource impulseSource;
@@ -58,9 +59,9 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
                 float strength = 0.4f;
                 impulseSource.GenerateImpulseWithVelocity(UnityEngine.Random.insideUnitSphere.normalized * strength);
             }
+
             UI_DamagedEffect.Instance.Show(0.5f);
-        }
-      
+        }   
         if (Stat.Health <= 0)
         {
             Die();
