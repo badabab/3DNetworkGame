@@ -3058,8 +3058,7 @@ GameObject:
   - component: {fileID: -8086626473004079332}
   - component: {fileID: 3796101974619470899}
   - component: {fileID: 7845372241274974235}
-  - component: {fileID: 1994395626828324233}
-  - component: {fileID: 7956414190233776203}
+  - component: {fileID: 5064030591060866661}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -3249,7 +3248,7 @@ MonoBehaviour:
     RotationSpeed: 200
     AttackCoolTime: 1
     AttackConsumeStamina: 20
-    Damage: 30
+    Damage: 20
 --- !u!114 &7845372241274974235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3275,7 +3274,7 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1994395626828324233
+--- !u!114 &5064030591060866661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3328,20 +3327,6 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -1, z: 0}
---- !u!114 &7956414190233776203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7714694350099525208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f50c608d36b13394d9a0d5987b6e86f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShakeTime: 0.3
-  Amplitude: 1.5
 --- !u!1 &7864870648334480172
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,8 @@
+using Cinemachine;
 using Photon.Pun;
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterMoveAbility))]
 [RequireComponent(typeof(CharacterRotateAbility))]
@@ -11,7 +12,6 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     public Stat Stat;
     public PhotonView PhotonView { get; private set; }
     private Animator _animator;
-
 
     private void Awake()
     {
@@ -49,11 +49,17 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     public void Damaged(int damage)
     {
         Stat.Health -= damage;
-        CameraShakeOnDamage cameraShake = FindObjectOfType<CameraShakeOnDamage>();
-        if (cameraShake != null && PhotonView.IsMine)
+
+        if (PhotonView.IsMine)
         {
-            cameraShake.ShakeCamera();
+            CinemachineImpulseSource impulseSource;
+            if (TryGetComponent<CinemachineImpulseSource>(out impulseSource))
+            {
+                float strength = 0.4f;
+                impulseSource.GenerateImpulseWithVelocity(UnityEngine.Random.insideUnitSphere.normalized * strength);
+            }
         }
+      
         if (Stat.Health <= 0)
         {
             Die();
