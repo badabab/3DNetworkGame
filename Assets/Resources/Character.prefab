@@ -3173,7 +3173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponCollider: {fileID: 5706974176410452176}
-  HitEffectPrefab: {fileID: 4021103657954561961, guid: ec826ed134a2c264bb2a0ea22a1d84b8, type: 3}
+  HitEffectPrefab: {fileID: 3470821040177233743, guid: 267611cd7a8f6cd468f1f7d5067e1c1e, type: 3}
 --- !u!114 &6131953390882762833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3201,6 +3201,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 1
     Name: Attack3
+  - Type: 9
+    SynchronizeType: 0
+    Name: Die
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0

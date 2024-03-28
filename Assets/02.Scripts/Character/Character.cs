@@ -71,7 +71,5 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
         yield return new WaitForSeconds(3f);
         gameObject.SetActive(false);
         Stat.Init();
-        yield return new WaitForSeconds(3f);
-        gameObject.SetActive(true);
     }
 }

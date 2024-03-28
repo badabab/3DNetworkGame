@@ -75,17 +75,19 @@ public class CharacterAttackAbility : CharacterAbility
             if (photonView != null)
             {
                 photonView.RPC("Damaged", RpcTarget.All, _owner.Stat.Damage);
-                photonView.RPC("CreateHitEffect", RpcTarget.All, (other.transform.position + transform.position) / 2f);
+                Vector3 hitPosition = (transform.position + other.transform.position) / 2f + new Vector3(0f, 1f);
+                PhotonNetwork.Instantiate("HitEffect", hitPosition, Quaternion.identity);
+                //photonView.RPC("CreateHitEffect", RpcTarget.All, (other.transform.position + transform.position) / 2f);
             }
             //damagedAbleObject.Damaged(_owner.Stat.Damage);
         }
     }
 
-    [PunRPC]
+    /*[PunRPC]
     public void CreateHitEffect(Vector3 position)
     {
         Instantiate(HitEffectPrefab, position, Quaternion.identity);
-    }
+    }*/
 
     public void ActiveCollider()
     {
