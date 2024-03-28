@@ -13,6 +13,7 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     public Stat Stat;
     public PhotonView PhotonView { get; private set; }
     private Animator _animator;
+    public bool IsAlive = true;
 
     private void Awake()
     {
@@ -71,6 +72,7 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     public void Die()
     {
         PhotonView.RPC(nameof(DieAnimation), RpcTarget.All);
+        IsAlive = false;
     }
     [PunRPC]
     public void DieAnimation()
