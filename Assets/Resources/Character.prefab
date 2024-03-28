@@ -3246,6 +3246,8 @@ MonoBehaviour:
     AttackCoolTime: 1
     AttackConsumeStamina: 20
     Damage: 20
+  IsAlive: 1
+  SpawnPoints: []
 --- !u!114 &7845372241274974235
 MonoBehaviour:
   m_ObjectHideFlags: 0

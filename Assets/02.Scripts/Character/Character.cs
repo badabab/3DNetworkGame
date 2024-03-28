@@ -2,7 +2,6 @@ using Cinemachine;
 using Photon.Pun;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterMoveAbility))]
 [RequireComponent(typeof(CharacterRotateAbility))]
@@ -14,9 +13,11 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     public PhotonView PhotonView { get; private set; }
     private Animator _animator;
     public bool IsAlive = true;
+    public GameObject[] SpawnPoints;
 
     private void Awake()
     {
+        SpawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         Stat.Init();
         _animator = GetComponent<Animator>();
         PhotonView = GetComponent<PhotonView>();
@@ -78,13 +79,22 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     public void DieAnimation()
     {
         _animator.SetTrigger("Die");
-        StartCoroutine(Respawn());
+        StartCoroutine(Die_Coroutine());
     }
 
-    IEnumerator Respawn()
+    IEnumerator Die_Coroutine()
     {
-        yield return new WaitForSeconds(3f);
-        gameObject.SetActive(false);
+        yield return new WaitForSeconds(5f);
+        Respawn();
+    }
+
+    public void Respawn()
+    {
         Stat.Init();
+        _animator.Rebind();
+        gameObject.SetActive(true);
+        IsAlive = true;
+
+        transform.position = SpawnPoints[UnityEngine.Random.Range(0, SpawnPoints.Length)].transform.position;
     }
 }
