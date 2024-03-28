@@ -49,6 +49,11 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     public void Damaged(int damage)
     {
         Stat.Health -= damage;
+        CameraShakeOnDamage cameraShake = FindObjectOfType<CameraShakeOnDamage>();
+        if (cameraShake != null && PhotonView.IsMine)
+        {
+            cameraShake.ShakeCamera();
+        }
         if (Stat.Health <= 0)
         {
             Die();

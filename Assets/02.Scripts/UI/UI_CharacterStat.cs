@@ -20,7 +20,7 @@ public class UI_CharacterStat : MonoBehaviour
         }
         //MyCharacter.Stat.Health = Mathf.Clamp(MyCharacter.Stat.Health, 0, MyCharacter.Stat.MaxHealth);
         //MyCharacter.Stat.Stamina = Mathf.Clamp(MyCharacter.Stat.Stamina, 0, MyCharacter.Stat.MaxStamina);
-        HealthSliderUI.value = MyCharacter.Stat.Health / MyCharacter.Stat.MaxHealth;
+        HealthSliderUI.value = MyCharacter.Stat.Health / (float) MyCharacter.Stat.MaxHealth;
         StaminaSliderUI.value = MyCharacter.Stat.Stamina / MyCharacter.Stat.MaxStamina;
     }
 }

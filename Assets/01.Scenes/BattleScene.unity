@@ -8155,6 +8155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1090231393}
   - component: {fileID: 1090231392}
+  - component: {fileID: 1090231394}
   m_Layer: 0
   m_Name: FollowCamera
   m_TagString: FollowCamera
@@ -8217,6 +8218,29 @@ Transform:
   - {fileID: 1242196885}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1090231394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090231391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &1092093343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17122,10 +17146,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1457521956}
+  - {fileID: 1090231393}
+  - {fileID: 1346965326}
   - {fileID: 151456541}
   - {fileID: 2047089658}
   - {fileID: 724270670}
-  - {fileID: 1090231393}
   - {fileID: 1950869603}
   - {fileID: 2136959147}
-  - {fileID: 1346965326}
