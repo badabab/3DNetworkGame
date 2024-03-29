@@ -25,7 +25,7 @@ public class CharacterMoveAbility : CharacterAbility
         }
         if (transform.position.y < -500)
         {
-            _owner.Death();
+            _owner.Damaged(_owner.Stat.Health, -1);
         }
 
         // 순서

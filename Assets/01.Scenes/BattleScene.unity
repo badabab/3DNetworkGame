@@ -16966,7 +16966,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC00\n\uB098\n\uB2E4\n\uB77C\n\n"
+  m_text: 'LogText
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40cbcaf50cad4544fad0d7822167e1e7, type: 2}
   m_sharedMaterial: {fileID: -312572048802277621, guid: 40cbcaf50cad4544fad0d7822167e1e7, type: 2}
@@ -16993,8 +16995,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -17655,6 +17657,7 @@ GameObject:
   - component: {fileID: 2079679388}
   - component: {fileID: 2079679390}
   - component: {fileID: 2079679389}
+  - component: {fileID: 2079679391}
   m_Layer: 5
   m_Name: Log
   m_TagString: Untagged
@@ -17720,6 +17723,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079679387}
   m_CullTransparentMesh: 1
+--- !u!114 &2079679391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079679387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1001 &2083558654
 PrefabInstance:
   m_ObjectHideFlags: 0
