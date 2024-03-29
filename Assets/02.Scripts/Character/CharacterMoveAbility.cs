@@ -60,6 +60,17 @@ public class CharacterMoveAbility : CharacterAbility
             speed = _owner.Stat.MoveSpeed;
         }
 
+        if (Input.GetKeyDown(KeyCode.Space) && _owner.Stat.Stamina >= _owner.Stat.JumpConsumeStamina)
+        {
+            _yVelocity = _owner.Stat.JumpPower;
+            dir.y = _yVelocity;
+            _owner.Stat.Stamina -= _owner.Stat.JumpConsumeStamina;
+            if (Input.GetMouseButtonDown(0))
+            {
+                _owner.GetComponent<Animator>().SetTrigger("AttackJump");
+            }
+        }
+
         // 4. 이동속도에 따라 그 방향으로 이동한다.
         _characterController.Move(dir * speed * Time.deltaTime);
     }

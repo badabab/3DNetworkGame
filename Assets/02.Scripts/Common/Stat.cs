@@ -13,6 +13,8 @@ public class Stat
 
     public float MoveSpeed;
     public float RunSpeed;
+    public float JumpPower;
+    public float JumpConsumeStamina;
 
     public float RotationSpeed;
 
