@@ -1,11 +1,11 @@
-using Photon.Pun;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterCanvasAbility : CharacterAbility
 {
     public Canvas MyCanvas;
-    public Text NicknameTextUI;
+    public TextMeshProUGUI NicknameTextUI;
     public Slider HealthSliderUI;
     public Slider StaminaSliderUI;
 

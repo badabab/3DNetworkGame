@@ -74,7 +74,7 @@ public class CharacterAttackAbility : CharacterAbility
             PhotonView photonView = other.GetComponent<PhotonView>();
             if (photonView != null)
             {
-                photonView.RPC("Damaged", RpcTarget.All, _owner.Stat.Damage);
+                photonView.RPC("Damaged", RpcTarget.All, _owner.Stat.Damage, _owner.PhotonView.OwnerActorNr);
                 Vector3 hitPosition = (transform.position + other.transform.position) / 2f + new Vector3(0f, 1f);
                 PhotonNetwork.Instantiate("HitEffect", hitPosition, Quaternion.identity);
                 //photonView.RPC("CreateHitEffect", RpcTarget.All, (other.transform.position + transform.position) / 2f);
