@@ -3245,7 +3245,7 @@ MonoBehaviour:
     MaxHealth: 100
     Stamina: 0
     MaxStamina: 100
-    RecoveryStamina: 10
+    RecoveryStamina: 7
     RunConsumeStamina: 10
     MoveSpeed: 7
     RunSpeed: 10

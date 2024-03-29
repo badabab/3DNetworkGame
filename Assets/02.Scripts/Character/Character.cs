@@ -101,9 +101,8 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     private IEnumerator Death_Coroutine()
     {
         yield return new WaitForSeconds(5f);
-
-        PhotonView.RPC(nameof(Live), RpcTarget.All);
         SetRandomPositionAndRotation();
+        PhotonView.RPC(nameof(Live), RpcTarget.All);
     }
 
     private void SetRandomPositionAndRotation()
