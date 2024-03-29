@@ -7,8 +7,6 @@ using System;
 // 역할: 포톤 서버 연결 관리자
 public class PhotonManager : MonoBehaviourPunCallbacks // PUN의 다양한 서버 이벤트(콜백 함수)를 받는다.
 {
-    public GameObject[] SpawnPoints;
-
     private void Start()
     {
         // 목적: 연결을 하고 싶다.
@@ -100,13 +98,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks // PUN의 다양한 서�
         Debug.Log($"RoomName: {PhotonNetwork.CurrentRoom.PlayerCount}");
         Debug.Log($"RoomName: {PhotonNetwork.CurrentRoom.MaxPlayers}");
 
-        SpawnCharacter();
-    }
-
-    private void SpawnCharacter()
-    {
-        GameObject randomSpawnPoint = SpawnPoints[UnityEngine.Random.Range(0, SpawnPoints.Length)];
-        PhotonNetwork.Instantiate(nameof(Character), randomSpawnPoint.transform.position, Quaternion.identity);
+        Vector3 randomAngle = new Vector3(0, UnityEngine.Random.Range(0, 360),0);
+        PhotonNetwork.Instantiate(nameof(Character), BattleScene.Instance.GetRandomSpawnPoint(), Quaternion.Euler(randomAngle));
     }
 
     // 방 생성에 실패했을 때 호출되는 콜백 함수

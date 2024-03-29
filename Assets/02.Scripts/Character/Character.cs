@@ -10,9 +10,9 @@ using UnityEngine;
 public class Character : MonoBehaviour, IPunObservable, IDamaged
 {
     public Stat Stat;
+    public State State { get; private set; } = State.Live;
     public PhotonView PhotonView { get; private set; }
     private Animator _animator;
-    public bool IsAlive = true;
     public GameObject[] SpawnPoints;
 
     private void Awake()
@@ -51,50 +51,63 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     [PunRPC]
     public void Damaged(int damage)
     {
+        if (State == State.Death)
+        {
+            return;
+        }
         Stat.Health -= damage;
         GetComponent<CharacterShakeAbility>().Shake();
         if (PhotonView.IsMine)
         {
-            CinemachineImpulseSource impulseSource;
-            if (TryGetComponent<CinemachineImpulseSource>(out impulseSource))
-            {
-                float strength = 0.4f;
-                impulseSource.GenerateImpulseWithVelocity(UnityEngine.Random.insideUnitSphere.normalized * strength);
-            }
-
-            UI_DamagedEffect.Instance.Show(0.5f);
+            OnDamagedMine();
         }   
         if (Stat.Health <= 0)
         {
-            Die();
+            State = State.Death;
+            PhotonView.RPC(nameof(Death), RpcTarget.All);
         }
     }
 
-    public void Die()
+    private void OnDamagedMine()
     {
-        PhotonView.RPC(nameof(DieAnimation), RpcTarget.All);
-        IsAlive = false;
-    }
-    [PunRPC]
-    public void DieAnimation()
-    {
-        _animator.SetTrigger("Die");
-        StartCoroutine(Die_Coroutine());
+        CinemachineImpulseSource impulseSource;
+        if (TryGetComponent<CinemachineImpulseSource>(out impulseSource))
+        {
+            float strength = 0.4f;
+            impulseSource.GenerateImpulseWithVelocity(UnityEngine.Random.insideUnitSphere.normalized * strength);
+        }
+
+        UI_DamagedEffect.Instance.Show(0.5f);
     }
 
-    IEnumerator Die_Coroutine()
+    [PunRPC]
+    public void Death()
+    {
+        State = State.Death;
+        GetComponent<Animator>().SetTrigger("Death");
+        GetComponent<CharacterAttackAbility>().InactiveCollider();
+
+        if (PhotonView.IsMine)
+        {
+            GetComponent<CharacterController>().enabled = false;
+            StartCoroutine(Death_Coroutine());
+        }
+    }
+
+    private IEnumerator Death_Coroutine()
     {
         yield return new WaitForSeconds(5f);
-        Respawn();
+
+        PhotonView.RPC(nameof(Live), RpcTarget.All);
     }
 
-    public void Respawn()
+    [PunRPC]
+    private void Live()
     {
         Stat.Init();
-        _animator.Rebind();
-        gameObject.SetActive(true);
-        IsAlive = true;
-
-        transform.position = SpawnPoints[UnityEngine.Random.Range(0, SpawnPoints.Length)].transform.position;
+        State = State.Live;
+        transform.position = BattleScene.Instance.GetRandomSpawnPoint();
+        GetComponent<CharacterController>().enabled = true;
+        GetComponent<Animator>().SetTrigger("Live");    
     }
 }
