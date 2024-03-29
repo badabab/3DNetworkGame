@@ -63,4 +63,11 @@ public class CharacterMoveAbility : CharacterAbility
         // 4. 이동속도에 따라 그 방향으로 이동한다.
         _characterController.Move(dir * speed * Time.deltaTime);
     }
+
+    public void Teleport(Vector3 position)
+    {
+        _characterController.enabled = false;
+        transform.position = position;
+        _characterController.enabled = true;
+    }
 }

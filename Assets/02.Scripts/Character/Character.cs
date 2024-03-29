@@ -28,6 +28,11 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
         }
     }
 
+    private void Start()
+    {
+        SetRandomPositionAndRotation();
+    }
+
     // 데이터 동기화를 위해 데이터 전송 및 수신 기능을 가진 약속
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -89,7 +94,6 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
 
         if (PhotonView.IsMine)
         {
-            GetComponent<CharacterController>().enabled = false;
             StartCoroutine(Death_Coroutine());
         }
     }
@@ -99,6 +103,14 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
         yield return new WaitForSeconds(5f);
 
         PhotonView.RPC(nameof(Live), RpcTarget.All);
+        SetRandomPositionAndRotation();
+    }
+
+    private void SetRandomPositionAndRotation()
+    {
+        Vector3 spawnPoint = BattleScene.Instance.GetRandomSpawnPoint();
+        GetComponent<CharacterMoveAbility>().Teleport(spawnPoint);
+        GetComponent<CharacterRotateAbility>().SetRandomRotation();
     }
 
     [PunRPC]
@@ -106,8 +118,6 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     {
         Stat.Init();
         State = State.Live;
-        transform.position = BattleScene.Instance.GetRandomSpawnPoint();
-        GetComponent<CharacterController>().enabled = true;
-        GetComponent<Animator>().SetTrigger("Live");    
+        GetComponent<Animator>().SetTrigger("Live");   
     }
 }

@@ -33,6 +33,11 @@ public class CharacterRotateAbility : CharacterAbility
         // 3. 카메라(3인칭)와 캐릭터를 회전 방향으로 회전시킨다.
         transform.eulerAngles = new Vector3(0, _mx, 0);
         CameraRoot.localEulerAngles = new Vector3(-_my, 0, 0);
-        // 4. 시네머신
+    }
+
+    public void SetRandomRotation()
+    {
+        _mx = UnityEngine.Random.Range(0, 360);
+        _my = 0;
     }
 }
