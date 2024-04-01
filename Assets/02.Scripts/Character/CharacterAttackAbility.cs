@@ -34,6 +34,10 @@ public class CharacterAttackAbility : CharacterAbility
         {
             return;
         }
+        if (GetComponent<CharacterMoveAbility>()._isJump )
+        {
+            return;
+        }
         _attackTimer += Time.deltaTime;
         bool haveStamina = _owner.Stat.Stamina >= _owner.Stat.AttackConsumeStamina;
         if (Input.GetMouseButtonDown(0) && _attackTimer >= _owner.Stat.AttackCoolTime && haveStamina)

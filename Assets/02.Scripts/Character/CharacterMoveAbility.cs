@@ -1,4 +1,3 @@
-using Photon.Pun;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -7,10 +6,13 @@ public class CharacterMoveAbility : CharacterAbility
 {
     // 목표: [W][A][S][D] 및 방향키를 누르면 캐릭터를 그 방향으로 이동시키고 싶다.
 
-    private float _gravity = -20; // 중력 변수
+    private float _gravity = -9.8f; // 중력 변수
     private float _yVelocity = 0f; // 누적할 중력 변수
     private CharacterController _characterController;
     private Animator _animator;
+
+    public bool _isJump = false;
+    private float _timer = 0;
 
     private void Start()
     {
@@ -42,7 +44,6 @@ public class CharacterMoveAbility : CharacterAbility
         // 3. 중력 적용하세요.
         _yVelocity += _gravity * Time.deltaTime;
         dir.y = _yVelocity;
-        // dir.y = -1f;
 
         float speed = _owner.Stat.MoveSpeed;
         if (Input.GetKey(KeyCode.LeftShift) && _owner.Stat.Stamina > 0 && (h != 0 || v != 0))
@@ -62,14 +63,33 @@ public class CharacterMoveAbility : CharacterAbility
 
         if (Input.GetKeyDown(KeyCode.Space) && _owner.Stat.Stamina >= _owner.Stat.JumpConsumeStamina)
         {
+            _isJump = true;
             _yVelocity = _owner.Stat.JumpPower;
             dir.y = _yVelocity;
             _owner.Stat.Stamina -= _owner.Stat.JumpConsumeStamina;
+        }
+        if (_isJump)
+        {
+            _timer += Time.deltaTime;
+            if (Input.GetMouseButtonDown(0))
+            {
+                _animator.SetTrigger("AttackJump");
+            }
+        }
+        if (_timer > 0.5)
+        {
+            _isJump = false;
+            _timer = 0f;
+        }
+
+        /*if (!_characterController.isGrounded)
+        {
+
             if (Input.GetMouseButtonDown(0))
             {
                 _owner.GetComponent<Animator>().SetTrigger("AttackJump");
             }
-        }
+        }*/
 
         // 4. 이동속도에 따라 그 방향으로 이동한다.
         _characterController.Move(dir * speed * Time.deltaTime);
