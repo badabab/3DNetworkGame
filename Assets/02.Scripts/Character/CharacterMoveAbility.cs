@@ -11,8 +11,7 @@ public class CharacterMoveAbility : CharacterAbility
     private CharacterController _characterController;
     private Animator _animator;
 
-    public bool _isJump = false;
-    private float _timer = 0;
+    public bool IsJumping => !_characterController.isGrounded;
 
     private void Start()
     {
@@ -61,38 +60,16 @@ public class CharacterMoveAbility : CharacterAbility
             speed = _owner.Stat.MoveSpeed;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && _owner.Stat.Stamina >= _owner.Stat.JumpConsumeStamina)
+        // 4. 이동속도에 따라 그 방향으로 이동한다.
+        _characterController.Move(dir * speed * Time.deltaTime);
+        
+        bool haveJumpStamina = _owner.Stat.Stamina >= _owner.Stat.JumpConsumeStamina;
+        if (Input.GetKeyDown(KeyCode.Space) && haveJumpStamina && _characterController.isGrounded)
         {
-            _isJump = true;
             _yVelocity = _owner.Stat.JumpPower;
             dir.y = _yVelocity;
             _owner.Stat.Stamina -= _owner.Stat.JumpConsumeStamina;
         }
-        if (_isJump)
-        {
-            _timer += Time.deltaTime;
-            if (Input.GetMouseButtonDown(0))
-            {
-                _animator.SetTrigger("AttackJump");
-            }
-        }
-        if (_timer > 0.5)
-        {
-            _isJump = false;
-            _timer = 0f;
-        }
-
-        /*if (!_characterController.isGrounded)
-        {
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                _owner.GetComponent<Animator>().SetTrigger("AttackJump");
-            }
-        }*/
-
-        // 4. 이동속도에 따라 그 방향으로 이동한다.
-        _characterController.Move(dir * speed * Time.deltaTime);
     }
 
     public void Teleport(Vector3 position)

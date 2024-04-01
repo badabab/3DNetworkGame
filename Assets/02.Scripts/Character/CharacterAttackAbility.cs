@@ -34,18 +34,21 @@ public class CharacterAttackAbility : CharacterAbility
         {
             return;
         }
-        if (GetComponent<CharacterMoveAbility>()._isJump )
-        {
-            return;
-        }
+        
         _attackTimer += Time.deltaTime;
         bool haveStamina = _owner.Stat.Stamina >= _owner.Stat.AttackConsumeStamina;
         if (Input.GetMouseButtonDown(0) && _attackTimer >= _owner.Stat.AttackCoolTime && haveStamina)
         {
             _owner.Stat.Stamina -= _owner.Stat.AttackConsumeStamina;
             _attackTimer = 0f;
-            // PlayAttackAnimation(Random.Range(1, 4)); // RPCTarget.All을 사용하기 때문에 직접 실행하는 코드는 제거
-            _owner.PhotonView.RPC(nameof(PlayAttackAnimation), RpcTarget.All, Random.Range(1,4));
+            if (GetComponent<CharacterMoveAbility>().IsJumping)
+            {
+                _owner.PhotonView.RPC(nameof(PlayAttackAnimation), RpcTarget.All, 4);
+            }
+            else
+            {
+                _owner.PhotonView.RPC(nameof(PlayAttackAnimation), RpcTarget.All, Random.Range(1, 4));
+            }         
             // RPCTarget.All : 모두에게
             // RPCTarget.Others : 나 자신을 제외하고 모두에게
             // RPCTarget.Master : 방장에게만
