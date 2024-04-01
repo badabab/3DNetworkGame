@@ -3118,7 +3118,7 @@ GameObject:
   - component: {fileID: 3796101974619470899}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3289,6 +3289,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 0
     Name: Motion1
+  - Type: 9
+    SynchronizeType: 0
+    Name: Attack4
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -3416,6 +3419,8 @@ MonoBehaviour:
     AttackConsumeStamina: 20
     Damage: 20
   SpawnPoints: []
+  HealthPotionPrefab: {fileID: 2105642623487264571, guid: f135b8b52bccaad4e9ff94300e3f9920, type: 3}
+  StaminaPotionPrefab: {fileID: 1437462609998507232, guid: 27373dc37ed518c43a37863db4a8991d, type: 3}
 --- !u!1 &7755448218802138711
 GameObject:
   m_ObjectHideFlags: 0

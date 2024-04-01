@@ -63,6 +63,7 @@ public class CharacterMoveAbility : CharacterAbility
         // 4. 이동속도에 따라 그 방향으로 이동한다.
         _characterController.Move(dir * speed * Time.deltaTime);
         
+        // 5. 점프 구현
         bool haveJumpStamina = _owner.Stat.Stamina >= _owner.Stat.JumpConsumeStamina;
         if (Input.GetKeyDown(KeyCode.Space) && haveJumpStamina && _characterController.isGrounded)
         {

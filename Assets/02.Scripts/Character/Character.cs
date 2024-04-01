@@ -15,6 +15,9 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     private Animator _animator;
     public GameObject[] SpawnPoints;
 
+    public GameObject HealthPotionPrefab;
+    public GameObject StaminaPotionPrefab;
+
     private void Awake()
     {
         SpawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
@@ -114,12 +117,15 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     [PunRPC]
     public void Death()
     {
-        State = State.Death;
         GetComponent<Animator>().SetTrigger("Death");
         GetComponent<CharacterAttackAbility>().InactiveCollider();
 
         if (PhotonView.IsMine)
         {
+            // 팩토리패턴: 객체 생성과 사요 로직을 분리해서 캡슐화하는 패턴
+            ItemObjectFactory.Instance.RequestCreate(ItemType.HealthPotion, transform.position);
+            ItemObjectFactory.Instance.RequestCreate(ItemType.StaminaPotion, transform.position);
+
             StartCoroutine(Death_Coroutine());
         }
     }
