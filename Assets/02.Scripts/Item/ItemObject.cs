@@ -24,21 +24,19 @@ public class ItemObject : MonoBehaviourPun
                 case ItemType.HealthPotion:
                 {
                     character.Stat.Health += (int)Value;
-                    if (character.Stat.Health > character.Stat.MaxHealth)
+                    if (character.Stat.Health >= character.Stat.MaxHealth)
                     {
                         character.Stat.Health = character.Stat.MaxHealth;
                     }
-                    Debug.Log($"Health {character.Stat.Health}");
                     break;
                 }
                 case ItemType.StaminaPotion:
                 {
                     character.Stat.Stamina += Value;
-                    if (character.Stat.Stamina > character.Stat.MaxStamina)
+                    if (character.Stat.Stamina >= character.Stat.MaxStamina)
                     {
                         character.Stat.Stamina = character.Stat.MaxStamina;
                     }
-                    Debug.Log($"Stamina {character.Stat.Stamina}");
                     break;
                 }
             }

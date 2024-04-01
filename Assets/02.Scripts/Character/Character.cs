@@ -77,7 +77,6 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
         }   
         if (Stat.Health <= 0)
         {
-            State = State.Death;
             if (PhotonView.IsMine)
             {
                 OnDeath(actorNumber);
@@ -117,6 +116,11 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     [PunRPC]
     public void Death()
     {
+        if (State == State.Death)
+        {
+            return;
+        }
+        State = State.Death;
         GetComponent<Animator>().SetTrigger("Death");
         GetComponent<CharacterAttackAbility>().InactiveCollider();
 
