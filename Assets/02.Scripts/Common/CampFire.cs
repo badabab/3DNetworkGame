@@ -29,7 +29,7 @@ public class CampFire : MonoBehaviour
 
     private void OnTriggerStay(Collider col)
     {
-        if (_target == null)
+        if (_target == null || !col.CompareTag("Player"))
         {
             return;
         }
@@ -37,8 +37,8 @@ public class CampFire : MonoBehaviour
         _timer += Time.deltaTime;
         if (_timer >= Cooltime)
         {
-            _timer = 0f;
             _target.Damaged(Damage, -1);
+            _timer = 0f;
         }
     }
 
@@ -52,8 +52,8 @@ public class CampFire : MonoBehaviour
 
         if (damagedObject == _target)
         {
-            _target = null;
             _timer = 0f;
+            _target = null;
         }
     }
 }
