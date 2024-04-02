@@ -131,24 +131,21 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
         {
             // 팩토리패턴: 객체 생성과 사용 로직을 분리해서 캡슐화하는 패턴
             int num = UnityEngine.Random.Range(0, 10);
-            if (num == 0)
+            if (num == 0) // 10%
             {
                 ItemObjectFactory.Instance.RequestCreate(ItemType.StaminaPotion, transform.position);
-                Debug.Log("스테미나 아이템");
             }
-            else if (num > 0 && num < 3)
+            else if (num > 0 && num < 3) // 20%
             {
                 ItemObjectFactory.Instance.RequestCreate(ItemType.HealthPotion, transform.position);
-                Debug.Log("체력 아이템");
             }
-            else
+            else // 70%
             {
-                int itemCount = UnityEngine.Random.Range(3, 6);
+                int itemCount = UnityEngine.Random.Range(10, 30);
                 for (int i = 0; i < itemCount; i++)
                 {
                     ItemObjectFactory.Instance.RequestCreate(ItemType.ScoreItem, transform.position);
                 }             
-                Debug.Log($"점수 아이템 {itemCount}개");
             }
             StartCoroutine(Death_Coroutine());
         }
