@@ -94,13 +94,13 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
         if (actorNumber >= 0)
         {
             string nickName = PhotonNetwork.CurrentRoom.GetPlayer(actorNumber).NickName;
-            string logMessage = $"\n{nickName}님이 {PhotonView.Owner.NickName}을 처치하였습니다.";
+            string logMessage = $"\n<color=#32CD32>{nickName}</color>님이 <color=#32CD32>{PhotonView.Owner.NickName}</color>을 <color=red>처치</color>하였습니다.";
             PhotonView.RPC(nameof(AddLog), RpcTarget.All, logMessage);
             //UI_RoomInfo.Instance.AddLog(logMessage);
         }
         else
         {
-            string logMessage = $"\n{PhotonView.Owner.NickName}이 운명을 다했습니다.";
+            string logMessage = $"\n<color=#32CD32>{PhotonView.Owner.NickName}</color>이 운명을 다했습니다.";
             PhotonView.RPC(nameof(AddLog), RpcTarget.All, logMessage);
         }
     }
