@@ -15,6 +15,7 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     private Animator _animator;
     public GameObject[] SpawnPoints;
 
+    [Header("Item Prefab")]
     public GameObject HealthPotionPrefab;
     public GameObject StaminaPotionPrefab;
     public GameObject ScoreItemPrefab;

@@ -33,6 +33,8 @@ public class ItemObject : MonoBehaviourPun
                 return;
             }
 
+            character.GetComponent<CharacterEffectAbility>().RequestPlay((int)ItemType);
+
             switch (ItemType)
             {
                 case ItemType.HealthPotion:
@@ -55,7 +57,7 @@ public class ItemObject : MonoBehaviourPun
                 }
                 case ItemType.ScoreItem:
                 {
-                    character.Score += 100;
+                    character.Score += (int)Value;
                     break;
                 }
             }
