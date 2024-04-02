@@ -39,6 +39,11 @@ public class ItemObject : MonoBehaviourPun
                     }
                     break;
                 }
+                case ItemType.ScoreItem:
+                {
+                    character.Score += 1;
+                    break;
+                }
             }
             gameObject.SetActive(false);
             ItemObjectFactory.Instance.RequestDelete(photonView.ViewID);

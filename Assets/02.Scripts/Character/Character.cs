@@ -17,6 +17,9 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
 
     public GameObject HealthPotionPrefab;
     public GameObject StaminaPotionPrefab;
+    public GameObject ScoreItemPrefab;
+
+    public int Score;
 
     private void Awake()
     {
@@ -126,10 +129,27 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
 
         if (PhotonView.IsMine)
         {
-            // 팩토리패턴: 객체 생성과 사요 로직을 분리해서 캡슐화하는 패턴
-            ItemObjectFactory.Instance.RequestCreate(ItemType.HealthPotion, transform.position);
-            ItemObjectFactory.Instance.RequestCreate(ItemType.StaminaPotion, transform.position);
-
+            // 팩토리패턴: 객체 생성과 사용 로직을 분리해서 캡슐화하는 패턴
+            int num = UnityEngine.Random.Range(0, 10);
+            if (num == 0)
+            {
+                ItemObjectFactory.Instance.RequestCreate(ItemType.StaminaPotion, transform.position);
+                Debug.Log("스테미나 아이템");
+            }
+            else if (num > 0 && num < 3)
+            {
+                ItemObjectFactory.Instance.RequestCreate(ItemType.HealthPotion, transform.position);
+                Debug.Log("체력 아이템");
+            }
+            else
+            {
+                int itemCount = UnityEngine.Random.Range(3, 6);
+                for (int i = 0; i < itemCount; i++)
+                {
+                    ItemObjectFactory.Instance.RequestCreate(ItemType.ScoreItem, transform.position);
+                }             
+                Debug.Log($"점수 아이템 {itemCount}개");
+            }
             StartCoroutine(Death_Coroutine());
         }
     }

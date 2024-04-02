@@ -3419,8 +3419,10 @@ MonoBehaviour:
     AttackConsumeStamina: 20
     Damage: 20
   SpawnPoints: []
-  HealthPotionPrefab: {fileID: 2105642623487264571, guid: f135b8b52bccaad4e9ff94300e3f9920, type: 3}
-  StaminaPotionPrefab: {fileID: 1437462609998507232, guid: 27373dc37ed518c43a37863db4a8991d, type: 3}
+  HealthPotionPrefab: {fileID: 7259357457775022564, guid: 4979ed7d71224e244959bb460405b2a4, type: 3}
+  StaminaPotionPrefab: {fileID: 1063078847328669274, guid: 432b3f82423453b4abcfdc4abb6a83ff, type: 3}
+  ScoreItemPrefab: {fileID: 1969316940406863731, guid: c0adbbcb8e43b8845a35b431d393e5f2, type: 3}
+  Score: 0
 --- !u!1 &7755448218802138711
 GameObject:
   m_ObjectHideFlags: 0
