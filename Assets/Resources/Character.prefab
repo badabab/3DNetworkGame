@@ -1986,7 +1986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.909804, g: 0.1764706, b: 0.14509805, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2588,7 +2588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.15686275, g: 0.5176471, b: 0.85882354, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3456,7 +3456,10 @@ MonoBehaviour:
   SpawnPoints: []
   HealthPotionPrefab: {fileID: 7259357457775022564, guid: 4979ed7d71224e244959bb460405b2a4, type: 3}
   StaminaPotionPrefab: {fileID: 1063078847328669274, guid: 432b3f82423453b4abcfdc4abb6a83ff, type: 3}
-  ScoreItemPrefab: {fileID: 1969316940406863731, guid: c0adbbcb8e43b8845a35b431d393e5f2, type: 3}
+  ScoreItemPrefabs:
+  - {fileID: 1969316940406863731, guid: c0adbbcb8e43b8845a35b431d393e5f2, type: 3}
+  - {fileID: 3710730492978942590, guid: d7690c439c93196488e4f922894dd2b5, type: 3}
+  - {fileID: 4070763355832412014, guid: 6d8849ef9150c5d4c92e892dfa939d94, type: 3}
   Score: 0
 --- !u!114 &4942580147454980779
 MonoBehaviour:
@@ -3473,6 +3476,8 @@ MonoBehaviour:
   Effects:
   - {fileID: 7063046975618510551}
   - {fileID: 6675897924126727978}
+  - {fileID: 6018455483468895792}
+  - {fileID: 6018455483468895792}
   - {fileID: 6018455483468895792}
 --- !u!1 &7755448218802138711
 GameObject:

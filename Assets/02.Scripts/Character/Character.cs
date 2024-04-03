@@ -18,7 +18,7 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     [Header("Item Prefab")]
     public GameObject HealthPotionPrefab;
     public GameObject StaminaPotionPrefab;
-    public GameObject ScoreItemPrefab;
+    public GameObject[] ScoreItemPrefabs;
 
     public int Score;
 
@@ -145,7 +145,19 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
                 int itemCount = UnityEngine.Random.Range(10, 30);
                 for (int i = 0; i < itemCount; i++)
                 {
-                    ItemObjectFactory.Instance.RequestCreate(ItemType.ScoreItem, transform.position);
+                    int random = UnityEngine.Random.Range(0, 3);
+                    switch (random)
+                    {
+                        case 0:
+                            ItemObjectFactory.Instance.RequestCreate(ItemType.ScoreItem1, transform.position);
+                            break;
+                        case 1:
+                            ItemObjectFactory.Instance.RequestCreate(ItemType.ScoreItem2, transform.position);
+                            break;
+                        case 2:
+                            ItemObjectFactory.Instance.RequestCreate(ItemType.ScoreItem3, transform.position);
+                            break;
+                    }
                 }             
             }
             StartCoroutine(Death_Coroutine());
