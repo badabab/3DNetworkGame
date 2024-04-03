@@ -50,23 +50,29 @@ public class ItemSpawner : MonoBehaviourPun
             // 4. 랜덤한 근처 위치에 생성한다.
             Vector3 randomPosition = new Vector3(UnityEngine.Random.Range(-10, 10), 1, UnityEngine.Random.Range(-10, 10));
             randomPosition += transform.position;
-            ItemObject itemObject = ItemObjectFactory.Instance.MasterCreate(ItemType.ScoreItem1, randomPosition);
-            _items.Add(itemObject);
-            itemObject.transform.SetParent(transform);
 
-            /*int random = UnityEngine.Random.Range(0, 3);
+            int random = UnityEngine.Random.Range(0, 3);
+            ItemType itemType;
             switch (random)
             {
                 case 0:
-                    ItemObjectFactory.Instance.RequestCreate(ItemType.ScoreItem1, randomPosition);
+                    itemType = ItemType.ScoreItem1;
                     break;
                 case 1:
-                    ItemObjectFactory.Instance.RequestCreate(ItemType.ScoreItem2, randomPosition);
+                    itemType = ItemType.ScoreItem2;
                     break;
                 case 2:
-                    ItemObjectFactory.Instance.RequestCreate(ItemType.ScoreItem3, randomPosition);
+                    itemType = ItemType.ScoreItem3;
                     break;
-            }*/
+                default:
+                    itemType = ItemType.ScoreItem1;
+                    break;
+            }
+
+            ItemObject itemObject = ItemObjectFactory.Instance.MasterCreate(itemType, randomPosition);
+            _items.Add(itemObject);
+            itemObject.transform.SetParent(transform);
+
             // 5. 생성할 시간을 다시 랜덤
             _createTime = UnityEngine.Random.Range(MinCreateTime, MaxCreateTime);
             _currentTime = 0;
