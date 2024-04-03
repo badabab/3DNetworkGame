@@ -2,6 +2,7 @@ using Cinemachine;
 using Photon.Pun;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 [RequireComponent(typeof(CharacterMoveAbility))]
 [RequireComponent(typeof(CharacterRotateAbility))]
@@ -53,6 +54,18 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
         ExitGames.Client.Photon.Hashtable myHashtable = PhotonNetwork.LocalPlayer.CustomProperties;
         myHashtable["Score"] = (int)myHashtable["Score"] + score;
         PhotonNetwork.LocalPlayer.SetCustomProperties(myHashtable);
+    }
+    public void ResetScore()
+    {
+        ExitGames.Client.Photon.Hashtable myHashtable = PhotonNetwork.LocalPlayer.CustomProperties;
+        myHashtable["Score"] = 0;
+        PhotonNetwork.LocalPlayer.SetCustomProperties(myHashtable);
+    }
+    public void AddKillCount (int actorNumber)
+    {
+        ExitGames.Client.Photon.Hashtable playerHashtable = PhotonNetwork.CurrentRoom.GetPlayer(actorNumber).CustomProperties;
+        playerHashtable["KillCount"] = (int)playerHashtable["KillCount"] + 1;
+        PhotonNetwork.CurrentRoom.GetPlayer(actorNumber).SetCustomProperties(playerHashtable);
     }
 
     // 데이터 동기화를 위해 데이터 전송 및 수신 기능을 가진 약속
@@ -111,7 +124,7 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
             string nickName = PhotonNetwork.CurrentRoom.GetPlayer(actorNumber).NickName;
             string logMessage = $"\n<color=#32CD32>{nickName}</color>님이 <color=#32CD32>{PhotonView.Owner.NickName}</color>을 <color=red>처치</color>하였습니다.";
             PhotonView.RPC(nameof(AddLog), RpcTarget.All, logMessage);
-            //UI_RoomInfo.Instance.AddLog(logMessage);
+            AddKillCount(actorNumber);
         }
         else
         {
@@ -175,6 +188,7 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
                     }
                 }             
             }
+            ResetScore();
             StartCoroutine(Death_Coroutine());
         }
     }
