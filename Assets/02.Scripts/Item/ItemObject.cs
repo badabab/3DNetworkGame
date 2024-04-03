@@ -57,17 +57,20 @@ public class ItemObject : MonoBehaviourPun
                 }
                 case ItemType.ScoreItem1:
                 {
-                    character.Score += (int)Value;
+                    //character.Score += (int)Value;
+                    character.AddScore((int)Value);
                     break;
                 }
                 case ItemType.ScoreItem2:
                 {
-                    character.Score += 50;
+                    //character.Score += 50;
+                    character.AddScore((int)Value);
                     break;
                 }
                 case ItemType.ScoreItem3:
                 {
-                    character.Score += 20;
+                    //character.Score += 20;
+                    character.AddScore((int)Value);
                     break;
                 }
             }

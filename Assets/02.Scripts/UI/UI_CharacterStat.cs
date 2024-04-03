@@ -8,7 +8,6 @@ public class UI_CharacterStat : MonoBehaviour
     public Character MyCharacter;
     public Slider HealthSliderUI;
     public Slider StaminaSliderUI;
-    public TextMeshProUGUI ScoreTextUI;
     
     private void Awake()
     {
@@ -24,6 +23,5 @@ public class UI_CharacterStat : MonoBehaviour
         //MyCharacter.Stat.Stamina = Mathf.Clamp(MyCharacter.Stat.Stamina, 0, MyCharacter.Stat.MaxStamina);
         HealthSliderUI.value = MyCharacter.Stat.Health / (float) MyCharacter.Stat.MaxHealth;
         StaminaSliderUI.value = MyCharacter.Stat.Stamina / MyCharacter.Stat.MaxStamina;
-        ScoreTextUI.text = $"Score: {MyCharacter.Score}";
     }
 }

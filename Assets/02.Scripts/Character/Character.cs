@@ -20,8 +20,6 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     public GameObject StaminaPotionPrefab;
     public GameObject[] ScoreItemPrefabs;
 
-    public int Score;
-
     private void Awake()
     {
         SpawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
@@ -37,7 +35,24 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
 
     private void Start()
     {
+        if (!PhotonView.IsMine)
+        {
+            return;
+        }
+       
         SetRandomPositionAndRotation();
+
+        ExitGames.Client.Photon.Hashtable hashtable = new ExitGames.Client.Photon.Hashtable();
+        hashtable.Add("Score", 0);
+        hashtable.Add("KillCount", 0);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
+    }
+
+    public void AddScore(int score)
+    {
+        ExitGames.Client.Photon.Hashtable myHashtable = PhotonNetwork.LocalPlayer.CustomProperties;
+        myHashtable["Score"] = (int)myHashtable["Score"] + score;
+        PhotonNetwork.LocalPlayer.SetCustomProperties(myHashtable);
     }
 
     // 데이터 동기화를 위해 데이터 전송 및 수신 기능을 가진 약속
