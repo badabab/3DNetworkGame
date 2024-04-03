@@ -11,6 +11,16 @@ public class ItemObjectFactory : MonoBehaviourPun
         Instance = this;
     }
 
+    public ItemObject MasterCreate(ItemType type, Vector3 position)
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            Debug.LogError("[MasterCreate] 마스터 클라이언트만 호출할 수 있습니다.");
+            return null;
+        }
+        return Create(type, position);
+    }
+
     public void RequestCreate(ItemType type, Vector3 position)
     {
         if (PhotonNetwork.IsMasterClient)
@@ -24,10 +34,11 @@ public class ItemObjectFactory : MonoBehaviourPun
     }
 
     [PunRPC]
-    private void Create(ItemType type, Vector3 position)
+    private ItemObject Create(ItemType type, Vector3 position)
     {
         Vector3 dropPos = position + new Vector3(0, 0.5f, 0) + UnityEngine.Random.insideUnitSphere;
-        PhotonNetwork.InstantiateRoomObject(type.ToString(), dropPos, Quaternion.identity);
+        GameObject gameObject = PhotonNetwork.InstantiateRoomObject(type.ToString(), dropPos, Quaternion.identity);
+        return gameObject.GetComponent<ItemObject>();
     }
 
     public void RequestDelete(int viewID)
