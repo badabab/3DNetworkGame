@@ -45,7 +45,7 @@ public class UI_PlayerRanking : MonoBehaviourPunCallbacks
         int playerCount = Math.Min(playerList.Count, 5);
         foreach (UI_PlayerRankingSlot slot in Slots)
         {
-            slot.gameObject.SetActive(false);
+            //slot.gameObject.SetActive(false);
         }
         for (int i = 0; i < playerCount; i++)
         {
