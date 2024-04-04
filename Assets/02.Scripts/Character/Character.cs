@@ -20,6 +20,9 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
     public GameObject StaminaPotionPrefab;
     public GameObject[] ScoreItemPrefabs;
 
+    public Weapon Weapon;
+    private int _previousScore = 0;
+
     private void Awake()
     {
         SpawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
@@ -53,6 +56,12 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
         ExitGames.Client.Photon.Hashtable myHashtable = PhotonNetwork.LocalPlayer.CustomProperties;
         myHashtable["Score"] = (int)myHashtable["Score"] + score;
         PhotonNetwork.LocalPlayer.SetCustomProperties(myHashtable);
+        int CurrentScore = (int)PhotonNetwork.LocalPlayer.CustomProperties["Score"];
+        if (CurrentScore - _previousScore >= 1000)
+        {
+            Weapon.SetWeaponScale();
+            _previousScore += 1000;
+        }
     }
     public void ResetScore()
     {
