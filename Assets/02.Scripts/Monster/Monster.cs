@@ -55,19 +55,19 @@ public class Monster : MonoBehaviour
     }
     private void Idle()
     {
-        //_animator.SetTrigger("Idle");
-
         _patrolTimer += Time.deltaTime;
         if (_patrolTimer > PatrolTime)
         {
             _patrolTimer = 0f;
             _currentState = MonsterState.Patrol;
+            _animator.SetTrigger("IdleToPatrol");
             Debug.Log("Idle -> Patrol");
             MoveRandomPosition();
         }
         if (Vector3.Distance(_player.position, transform.position) <= TraceDistance)
         {
             _currentState = MonsterState.Trace;
+            _animator.SetTrigger("IdleToTrace");
             Debug.Log("Idle -> Trace");
         }
     }
@@ -82,11 +82,13 @@ public class Monster : MonoBehaviour
         if (Vector3.Distance(transform.position, _startPosition) >= ReturnDistance)
         {
             _currentState = MonsterState.Return;
+            _animator.SetTrigger("PatrolToReturn");
             Debug.Log("Patrol -> Return");
         }
         if (Vector3.Distance(_player.position, transform.position) <= TraceDistance)
         {
             _currentState = MonsterState.Trace;
+            _animator.SetTrigger("PatrolToTrace");
             Debug.Log("Patrol -> Trace");
         }
     }
@@ -114,6 +116,7 @@ public class Monster : MonoBehaviour
         if (Vector3.Distance(transform.position, _startPosition) <= TOLERANCE)
         {
             _currentState = MonsterState.Idle;
+            _animator.SetTrigger("Idle");
             Debug.Log("Return -> Idle");
         }
     }
