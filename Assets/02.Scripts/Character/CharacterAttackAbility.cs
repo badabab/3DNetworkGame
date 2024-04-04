@@ -18,6 +18,7 @@ public class CharacterAttackAbility : CharacterAbility
 
     public Collider WeaponCollider;
     public GameObject HitEffectPrefab;
+    public GameObject WeaponObject;
 
     // 때린 애들을 기억해 놓는 리스트
     private List<IDamaged> _damagedList = new List<IDamaged>();
@@ -104,5 +105,13 @@ public class CharacterAttackAbility : CharacterAbility
     {
         WeaponCollider.enabled = false;
         _damagedList.Clear();
+    }
+    public void RefreshWeaponScale()
+    {
+        int score = _owner.GetPropertyIntValue("Score");
+        float scale = 1f;
+        scale += (score / 1000) * 0.1f;
+
+        WeaponObject.transform.localScale = new Vector3(scale, scale, scale);
     }
 }
