@@ -58,6 +58,7 @@ MonoBehaviour:
   - ItemSpawn
   - SpawnItem
   - AddPropertyIntValue
+  - PlayAnimation
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
