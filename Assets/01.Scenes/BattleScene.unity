@@ -21078,7 +21078,7 @@ Animator:
   m_GameObject: {fileID: 6899060829671932953}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b7822eb5951163b48830b6d9bcbf48b4, type: 3}
-  m_Controller: {fileID: 9100000, guid: 6b74c0471f91af34f8e98a4d46810410, type: 2}
+  m_Controller: {fileID: 9100000, guid: 361e9d816c172e74892b2cf675c2891e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -23290,6 +23290,7 @@ MonoBehaviour:
   TraceDistance: 10
   ReturnDistance: 20
   AttackDistance: 2
+  AttackDelay: 3
 --- !u!1 &6970337242434739581
 GameObject:
   m_ObjectHideFlags: 0

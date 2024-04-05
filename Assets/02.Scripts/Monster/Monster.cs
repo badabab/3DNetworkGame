@@ -29,6 +29,8 @@ public class Monster : MonoBehaviour
     public float ReturnDistance = 20f;
     public const float TOLERANCE = 0.1f;
     public float AttackDistance = 2f;
+    public float AttackDelay = 3f;
+    private float _attackTimer = 0f;
 
     private void Start()
     {
@@ -101,11 +103,13 @@ public class Monster : MonoBehaviour
         if (Vector3.Distance(transform.position, _startPosition) >= ReturnDistance)
         {
             _currentState = MonsterState.Return;
+            _animator.SetTrigger("TraceToReturn");
             Debug.Log("Trace -> Return");
         }
         if (Vector3.Distance(_player.position, transform.position) <= AttackDistance)
         {
             _currentState = MonsterState.Attack;
+            _animator.SetTrigger($"Attack{UnityEngine.Random.Range(1,3)}");
             Debug.Log("Trace -> Attack");
         }
     }
@@ -122,23 +126,31 @@ public class Monster : MonoBehaviour
     }
     private void Attack()
     {
-        // Attack하는 코드
+        _attackTimer += Time.deltaTime;
+        if (_attackTimer > AttackDelay)
+        {
+            _animator.SetTrigger($"Attack{UnityEngine.Random.Range(1, 3)}");
+            _attackTimer = 0;
+        }
 
         if (Vector3.Distance(_player.position, transform.position) >= AttackDistance)
         {
             _currentState = MonsterState.Trace;
+            _animator.SetTrigger("AttackToTrace");
             Debug.Log("Attack -> Trace");
         }
     }
     private void Damaged()
     {
-        //_animator.SetTrigger("Damaged");
+        _animator.SetTrigger("Damaged");
+        // 0.5초 후??
         _currentState = MonsterState.Trace;
+        _animator.SetTrigger("DamagedToTrace");
         Debug.Log("Damaged -> Trace");
     }
     private void Die()
     {
-        //_animator.SetTrigger("Die");
+        _animator.SetTrigger("Die");
     }
 
     private void MoveRandomPosition()
