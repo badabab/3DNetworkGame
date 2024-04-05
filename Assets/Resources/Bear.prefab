@@ -1567,7 +1567,7 @@ MonoBehaviour:
     RotationSpeed: 0
     AttackCoolTime: 0
     AttackConsumeStamina: 0
-    Damage: 0
+    Damage: 10
   TraceDetectRange: 10
   IdleMaxTime: 3
   PatrolDestination: {fileID: 0}

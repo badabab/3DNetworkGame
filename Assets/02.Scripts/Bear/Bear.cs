@@ -66,7 +66,6 @@ public class Bear : MonoBehaviour
 
     private void Update()
     {
-        // 조기 반환
         if (!PhotonNetwork.IsMasterClient)
         {
             return;
@@ -97,6 +96,16 @@ public class Bear : MonoBehaviour
             case BearState.Attack:
             {
                 Attack();
+                break;
+            }
+            case BearState.Hit:
+            {
+                Hit();
+                break;
+            }
+            case BearState.Death:
+            {
+                Death();
                 break;
             }
         }
@@ -152,7 +161,6 @@ public class Bear : MonoBehaviour
 
     private void Return()
     {
-        // [시작 위치]까지 간다.
         Agent.destination = _startPosition;
         Agent.stoppingDistance = 0f;
 
@@ -163,7 +171,6 @@ public class Bear : MonoBehaviour
             Debug.Log("Return -> Idle");
         }
 
-        // IF [플레이어]가 [감지 범위]안에 들어오면 플레이어 (추적 상태로 전이)
         _targetCharacter = FindTarget(TraceDetectRange);
         if (_targetCharacter != null)
         {
@@ -210,6 +217,15 @@ public class Bear : MonoBehaviour
         }
     }
 
+    private void Hit()
+    {
+        
+    }
+    private void Death()
+    {
+
+    }
+
     private void Attack()
     {
         // 타겟이 게임에서 나가면 복귀
@@ -239,12 +255,10 @@ public class Bear : MonoBehaviour
         {
             transform.LookAt(_targetCharacter.transform);
 
-            _attackTimer = 0f;
             RequestPlayAnimation("Attack");
+            _attackTimer = 0f;
         }
     }
-
-
 
     // 나와의 거리가 distance보다 짧은 플레이어를 반환
     private Character FindTarget(float distance)
@@ -258,13 +272,11 @@ public class Bear : MonoBehaviour
             {
                 continue;
             }
-
             if (Vector3.Distance(character.transform.position, myPosition) <= distance)
             {
                 return character;
             }
         }
-
         return null;
     }
     private List<Character> FindTargets(float distance)
@@ -280,22 +292,18 @@ public class Bear : MonoBehaviour
             {
                 continue;
             }
-
             if (Vector3.Distance(character.transform.position, myPosition) <= distance)
             {
                 characters.Add(character);
             }
         }
-
         return characters;
     }
-
 
     private float GetDistance(Transform otherTransform)
     {
         return Vector3.Distance(transform.position, otherTransform.position);
     }
-
 
     public void AttackAction()
     {
@@ -303,7 +311,6 @@ public class Bear : MonoBehaviour
         {
             return;
         }
-
         Debug.Log("AttackAction!");
         // 일정 범위 안에 있는 모든 플레이어에게 데미지를 주고 싶다.
         List<Character> targets = FindTargets(AttackDistance + 0.1f);
@@ -317,7 +324,6 @@ public class Bear : MonoBehaviour
             {
                 target.PhotonView.RPC("Damaged", RpcTarget.All, Stat.Damage, -1);
             }
-
         }
     }
 
@@ -331,7 +337,6 @@ public class Bear : MonoBehaviour
     {
         MyAnimatior.Play(animationName);
     }
-
 
     private void SetRandomPatrolDestination()
     {
