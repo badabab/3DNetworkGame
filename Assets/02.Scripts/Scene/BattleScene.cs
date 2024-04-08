@@ -12,6 +12,11 @@ public class BattleScene : MonoBehaviourPunCallbacks
         Instance = this;
     }
 
+    private void Start()
+    {
+        PhotonNetwork.Instantiate(nameof(Character), Vector3.zero, Quaternion.identity);
+    }
+
     public Vector3 GetRandomSpawnPoint()
     {
         int randomIndex = UnityEngine.Random.Range(0,SpawnPoints.Count);

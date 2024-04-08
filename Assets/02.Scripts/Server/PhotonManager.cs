@@ -62,12 +62,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks // PUN의 다양한 서�
 
         //PhotonNetwork.CreateRoom()                 // 방을 만드는 것
         //PhotonNetwork.JoinRoom()                   // 방에 입장하는 것
-        //PhotonNetwork.JoinRandomRoom()             // 랜덤한 방에 입장하는 것
-        RoomOptions roomOptions = new RoomOptions();
+        //PhotonNetwork.JoinRandomRoom()             // 랜덤한 방에 입장하는 것        
+        /*RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 20;       // 입장 가능한 최대 플레이어 수
         roomOptions.IsVisible = true;      // 로비에서 방 목록에 노출할 것인가?
         roomOptions.IsOpen = true;         // 방이 열려있는 상태인가?
-        PhotonNetwork.JoinOrCreateRoom("test", roomOptions, TypedLobby.Default);      // 방이 있다면 입장하고 없다면 만드는 것
+        PhotonNetwork.JoinOrCreateRoom("test", roomOptions, TypedLobby.Default);      // 방이 있다면 입장하고 없다면 만드는 것 */  
         //PhotonNetwork.JoinRandomOrCreateRoom();    // 랜덤한 방에 들어가거나 없다면 만드는 것
     }
 
@@ -98,7 +98,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks // PUN의 다양한 서�
         Debug.Log($"RoomName: {PhotonNetwork.CurrentRoom.PlayerCount}");
         Debug.Log($"RoomName: {PhotonNetwork.CurrentRoom.MaxPlayers}");
 
-        PhotonNetwork.Instantiate(nameof(Character), Vector3.zero, Quaternion.identity);
+        PhotonNetwork.LoadLevel("BattleScene");
+        //PhotonNetwork.Instantiate(nameof(Character), Vector3.zero, Quaternion.identity);
     }
 
     // 방 생성에 실패했을 때 호출되는 콜백 함수
