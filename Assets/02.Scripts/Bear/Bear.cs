@@ -1,10 +1,12 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
-public class Bear : MonoBehaviour
+public class Bear : MonoBehaviour, IPunObservable, IDamaged
 {
     // 곰 상태 상수(열거형)
     public enum BearState
@@ -22,6 +24,9 @@ public class Bear : MonoBehaviour
 
     public Animator MyAnimatior;
     public NavMeshAgent Agent;
+  
+    public Canvas MyCanvas;
+    public Slider HealthSliderUI;
 
     private List<Character> _characterList = new List<Character>();
     public SphereCollider CharacterDetectCollider;
@@ -49,6 +54,7 @@ public class Bear : MonoBehaviour
         Agent.speed = Stat.MoveSpeed;
         _startPosition = transform.position;
         CharacterDetectCollider.radius = TraceDetectRange;
+        Stat.Init();
     }
 
     private void OnTriggerEnter(Collider col)
@@ -64,8 +70,26 @@ public class Bear : MonoBehaviour
         }
     }
 
+    public void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info)
+    {
+        // 데이터 동기화 해야할 것: 체력, 상태
+        if (stream.IsWriting)
+        {
+            stream.SendNext(Stat.Health);
+            stream.SendNext(_state);
+        }
+        else if (stream.IsReading)
+        {
+            Stat.Health = (int)stream.ReceiveNext();
+            _state = (BearState)stream.ReceiveNext();
+        }
+    }
+
     private void Update()
     {
+        MyCanvas.transform.forward = Camera.main.transform.forward;
+        HealthSliderUI.value = (float)Stat.Health / Stat.MaxHealth;
+
         if (!PhotonNetwork.IsMasterClient)
         {
             return;
@@ -219,11 +243,48 @@ public class Bear : MonoBehaviour
 
     private void Hit()
     {
-        
+        Debug.Log("Hit -> Trace");
+        _state = BearState.Trace; 
     }
     private void Death()
     {
+        _state = BearState.Death;
+        RequestPlayAnimation("Death");  
+        StartCoroutine(Death_Coroutine());
+    }
 
+    private IEnumerator Death_Coroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        PhotonNetwork.Destroy(gameObject);
+    }
+
+    [PunRPC]
+    public void Damaged(int damage, int actorNumber)
+    {
+        if (_state == BearState.Death || !PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+        Stat.Health -= damage;
+        if (Stat.Health <= 0)
+        {
+            string nickName = PhotonNetwork.CurrentRoom.GetPlayer(actorNumber).NickName;
+            string logMessage = $"\n<color=#32CD32>{nickName}</color>님이 <color=#32CD32>곰돌이</color>를 <color=red>처치</color>하였습니다.";
+            _targetCharacter.PhotonView.RPC(nameof(AddLog), RpcTarget.All, logMessage);
+
+            Death();
+        }
+        else
+        {
+            RequestPlayAnimation("Hit");
+            _state = BearState.Hit;
+        }
+    }
+    [PunRPC]
+    public void AddLog(string logMessage)
+    {
+        UI_RoomInfo.Instance.AddLog(logMessage);
     }
 
     private void Attack()
@@ -319,7 +380,7 @@ public class Bear : MonoBehaviour
             Vector3 dir = (target.transform.position - transform.position).normalized;
             int viewAngle = 160 / 2;
             float angle = Vector3.Angle(transform.forward, dir);
-            Debug.Log(angle);
+            //Debug.Log(angle);
             if (Vector3.Angle(transform.forward, dir) < viewAngle)
             {
                 target.PhotonView.RPC("Damaged", RpcTarget.All, Stat.Damage, -1);

@@ -11,7 +11,7 @@ public class UI_PlayerRankingSlot : MonoBehaviour
 
     public void Set(Player player)
     {
-        RankingTextUI.text = "-";
+        //RankingTextUI.text = "-";
         NickmaneTextUI.text = player.NickName;
         if(player.CustomProperties != null )
         {

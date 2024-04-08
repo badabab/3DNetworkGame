@@ -3830,6 +3830,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2058125620085784248, guid: 6913ee3cbf0e91f4ca3510e9f9e346ef, type: 3}
+      propertyPath: m_text
+      value: "4\uB4F1"
+      objectReference: {fileID: 0}
     - target: {fileID: 3173519925042942601, guid: 6913ee3cbf0e91f4ca3510e9f9e346ef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -11029,6 +11033,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2058125620085784248, guid: 6913ee3cbf0e91f4ca3510e9f9e346ef, type: 3}
+      propertyPath: m_text
+      value: "5\uB4F1"
+      objectReference: {fileID: 0}
     - target: {fileID: 3173519925042942601, guid: 6913ee3cbf0e91f4ca3510e9f9e346ef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -12237,6 +12245,10 @@ PrefabInstance:
     - target: {fileID: 1720277883505786573, guid: 6913ee3cbf0e91f4ca3510e9f9e346ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058125620085784248, guid: 6913ee3cbf0e91f4ca3510e9f9e346ef, type: 3}
+      propertyPath: m_text
+      value: "2\uB4F1"
       objectReference: {fileID: 0}
     - target: {fileID: 3173519925042942601, guid: 6913ee3cbf0e91f4ca3510e9f9e346ef, type: 3}
       propertyPath: m_AnchorMax.y
@@ -14068,7 +14080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2058125620085784248, guid: 6913ee3cbf0e91f4ca3510e9f9e346ef, type: 3}
       propertyPath: m_text
-      value: "1\uB4F1"
+      value: '-'
       objectReference: {fileID: 0}
     - target: {fileID: 2404355555556981083, guid: 6913ee3cbf0e91f4ca3510e9f9e346ef, type: 3}
       propertyPath: m_text
@@ -20826,6 +20838,10 @@ PrefabInstance:
     - target: {fileID: 1720277883505786573, guid: 6913ee3cbf0e91f4ca3510e9f9e346ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058125620085784248, guid: 6913ee3cbf0e91f4ca3510e9f9e346ef, type: 3}
+      propertyPath: m_text
+      value: "3\uB4F1"
       objectReference: {fileID: 0}
     - target: {fileID: 3173519925042942601, guid: 6913ee3cbf0e91f4ca3510e9f9e346ef, type: 3}
       propertyPath: m_AnchorMax.y
