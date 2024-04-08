@@ -7,6 +7,8 @@ public class BattleScene : MonoBehaviourPunCallbacks
     public static BattleScene Instance {  get; private set; }
     public List<Transform> SpawnPoints;
 
+    private bool _init = false;
+
     private void Awake()
     {
         Instance = this;
@@ -14,7 +16,10 @@ public class BattleScene : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        PhotonNetwork.Instantiate(nameof(Character), Vector3.zero, Quaternion.identity);
+        if (!_init)
+        {
+            Init();
+        }
     }
 
     public Vector3 GetRandomSpawnPoint()
@@ -25,6 +30,17 @@ public class BattleScene : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        if (!_init)
+        {
+            Init();
+        }
+    }
+
+    private void Init()
+    {
+        _init = true;
+
+        PhotonNetwork.Instantiate(nameof(Character), Vector3.zero, Quaternion.identity);
         if (!PhotonNetwork.IsMasterClient)
         {
             return;
