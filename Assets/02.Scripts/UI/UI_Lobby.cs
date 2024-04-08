@@ -8,6 +8,11 @@ public class UI_Lobby : MonoBehaviour
     public TMP_InputField NicknameInputFieldUI;
     public TMP_InputField RoomIDInputFieldUI;
 
+    public GameObject MaleCharacter;
+    public GameObject FemaleCharacter;
+
+    public bool _isMale = true;
+
     public void OnClickMakeRoomButton()
     {
         string nickname = NicknameInputFieldUI.text;
@@ -27,5 +32,18 @@ public class UI_Lobby : MonoBehaviour
         roomOptions.IsOpen = true;         // 방이 열려있는 상태인가?
 
         PhotonNetwork.JoinOrCreateRoom(roomID, roomOptions, TypedLobby.Default);   // 방이 있다면 입장하고 없다면 만드는 것 
+    }
+
+    public void OnClickMaleButton()
+    {
+        _isMale = true;
+        MaleCharacter.SetActive(true);
+        FemaleCharacter.SetActive(false);
+    }
+    public void OnClickFemaleButton()
+    {
+        _isMale = false;
+        MaleCharacter.SetActive(false);
+        FemaleCharacter.SetActive(true);
     }
 }

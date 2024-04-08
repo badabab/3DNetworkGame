@@ -41,6 +41,7 @@ public class BattleScene : MonoBehaviourPunCallbacks
         _init = true;
 
         PhotonNetwork.Instantiate(nameof(Character), Vector3.zero, Quaternion.identity);
+
         if (!PhotonNetwork.IsMasterClient)
         {
             return;
