@@ -16,7 +16,7 @@ public class UI_Room : MonoBehaviour
         _roomInfo = room;
 
         RoomNameTextUI.text = room.Name;
-        NicknameTextUI.text = "방장 이름";
+        NicknameTextUI.text = room.CustomProperties["MasterNickname"].ToString();
         PlayerCountTextUI.text = $"{room.PlayerCount}/{room.MaxPlayers}";
     }
 
