@@ -1013,15 +1013,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 501295248943452728, guid: d6a5e2c4aefa6804b8f7d2af9a9676b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.1748009
+      value: -0.94
       objectReference: {fileID: 0}
     - target: {fileID: 501295248943452728, guid: d6a5e2c4aefa6804b8f7d2af9a9676b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.000759422
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 501295248943452728, guid: d6a5e2c4aefa6804b8f7d2af9a9676b5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.338163
+      value: -27.7
       objectReference: {fileID: 0}
     - target: {fileID: 501295248943452728, guid: d6a5e2c4aefa6804b8f7d2af9a9676b5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3932,6 +3932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NicknameInputFieldUI: {fileID: 1617033532}
   RoomIDInputFieldUI: {fileID: 1872739249}
+  SelectedCharacterType: 0
   MaleCharacter: {fileID: 9091760964269055987}
   FemaleCharacter: {fileID: 1328023254823827147}
 --- !u!1001 &446454150
@@ -9399,13 +9400,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248683565}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0, y: -0.14381391, z: -0, w: 0.9896048}
+  m_LocalPosition: {x: -0.14, y: 1, z: -8.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -16.537, z: 0}
 --- !u!1001 &1251778134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10021,12 +10022,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 432281028}
         m_TargetAssemblyTypeName: UI_Lobby, Assembly-CSharp
-        m_MethodName: OnClickFemaleButton
-        m_Mode: 1
+        m_MethodName: OnClickCharacterTypeButton
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -17364,8 +17365,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 432281028}
         m_TargetAssemblyTypeName: UI_Lobby, Assembly-CSharp
-        m_MethodName: OnClickMaleButton
-        m_Mode: 1
+        m_MethodName: OnClickCharacterTypeButton
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18939,7 +18940,7 @@ GameObject:
   - component: {fileID: 1812072891543137393}
   - component: {fileID: 2211126459978657610}
   m_Layer: 0
-  m_Name: Female
+  m_Name: FemaleCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19234,7 +19235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1328023254823827147}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.9914449, z: 0, w: 0.13052626}
+  m_LocalRotation: {x: 0, y: 0.976296, z: 0, w: 0.2164397}
   m_LocalPosition: {x: -1.5, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19245,7 +19246,7 @@ Transform:
   - {fileID: 2543817265324229051}
   - {fileID: 2539411107399444453}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 165, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 155, z: 0}
 --- !u!1 &1970120010458363990
 GameObject:
   m_ObjectHideFlags: 0
@@ -23356,7 +23357,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9091760964269055987}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.9914449, z: -0, w: 0.13052626}
+  m_LocalRotation: {x: 0, y: 0.976296, z: 0, w: 0.2164397}
   m_LocalPosition: {x: -1.5, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -23367,7 +23368,7 @@ Transform:
   - {fileID: 5696787598443702403}
   - {fileID: 5728497924057845469}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 165, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 155, z: 0}
 --- !u!1 &8580834786463715694
 GameObject:
   m_ObjectHideFlags: 0
@@ -23565,7 +23566,7 @@ GameObject:
   - component: {fileID: 8459937965789234505}
   - component: {fileID: 8281281597353805426}
   m_Layer: 0
-  m_Name: Male
+  m_Name: MaleCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

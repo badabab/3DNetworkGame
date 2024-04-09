@@ -34,7 +34,7 @@ public class Character : MonoBehaviour, IPunObservable, IDamaged
         {
             UI_CharacterStat.Instance.MyCharacter = this;
             MinimapCamera.Instance.MyCharacter = this;
-        }
+        }       
     }
 
     private void Start()

@@ -3,15 +3,26 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 
+public enum CharacterType
+{
+    Male,
+    Female,
+}
+
 public class UI_Lobby : MonoBehaviour
 {
     public TMP_InputField NicknameInputFieldUI;
     public TMP_InputField RoomIDInputFieldUI;
 
+    public static CharacterType SelectedCharacterType = CharacterType.Male;
     public GameObject MaleCharacter;
     public GameObject FemaleCharacter;
 
-    public bool _isMale = true;
+    private void Start()
+    {
+        MaleCharacter.SetActive(SelectedCharacterType == CharacterType.Male);
+        FemaleCharacter.SetActive(SelectedCharacterType == CharacterType.Female);
+    }
 
     public void OnClickMakeRoomButton()
     {
@@ -34,16 +45,12 @@ public class UI_Lobby : MonoBehaviour
         PhotonNetwork.JoinOrCreateRoom(roomID, roomOptions, TypedLobby.Default);   // 방이 있다면 입장하고 없다면 만드는 것 
     }
 
-    public void OnClickMaleButton()
+    public void OnClickMaleButton() { OnClickCharacterTypeButton(CharacterType.Male); }
+    public void OnClickFemaleButton() => OnClickCharacterTypeButton(CharacterType.Female);
+    private void OnClickCharacterTypeButton(CharacterType characterType)
     {
-        _isMale = true;
-        MaleCharacter.SetActive(true);
-        FemaleCharacter.SetActive(false);
-    }
-    public void OnClickFemaleButton()
-    {
-        _isMale = false;
-        MaleCharacter.SetActive(false);
-        FemaleCharacter.SetActive(true);
+        SelectedCharacterType = characterType;
+        MaleCharacter.SetActive(SelectedCharacterType == CharacterType.Male);
+        FemaleCharacter.SetActive(SelectedCharacterType == CharacterType.Female);
     }
 }
